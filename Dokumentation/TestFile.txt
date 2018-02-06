@@ -42,3 +42,23 @@ Am        : 06.02.2018 18:38:01
 Änderungen: Nochmal ein Test um zu schauen ob das "Worked!" funktioniert wie es soll.
 Eine Frage habe ich, wie handelt dieses Ding lange Worte?
 TestenwirdieseinmalindemwireinunnötiglangeswortschreibenwasLegitkeinWortist, oh kuck mal da, es handelt es richtig gut brate
+============================================================================
+
+///TestFile
+///Stefan Simic
+///06.02.2018 22:06:23
+///Version 1.0
+
+============================================================================
+
+Änderungen: Test Test
+============================================================================
+
+///TestFile
+///Stefan Simic
+///06.02.2018 22:08:03
+///Version 1.0
+
+============================================================================
+
+Änderungen: 

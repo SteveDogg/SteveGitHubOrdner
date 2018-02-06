@@ -1,0 +1,10 @@
+C:\Users\stefa\source\repos\Dokumentation\Dokumentation\obj\Release\Dokumentation.csprojResolveAssemblyReference.cache
+C:\Users\stefa\source\repos\Dokumentation\Dokumentation\obj\Release\Dokumentation.Properties.Resources.resources
+C:\Users\stefa\source\repos\Dokumentation\Dokumentation\obj\Release\Dokumentation.csproj.GenerateResource.Cache
+C:\Users\stefa\source\repos\Dokumentation\Dokumentation\obj\Release\Dokumentation.csproj.CoreCompileInputs.cache
+C:\Users\stefa\source\repos\Dokumentation\Dokumentation\bin\Release\Dokumentation.exe.config
+C:\Users\stefa\source\repos\Dokumentation\Dokumentation\bin\Release\Dokumentation.exe
+C:\Users\stefa\source\repos\Dokumentation\Dokumentation\bin\Release\Dokumentation.pdb
+C:\Users\stefa\source\repos\Dokumentation\Dokumentation\obj\Release\Dokumentation.Form1.resources
+C:\Users\stefa\source\repos\Dokumentation\Dokumentation\obj\Release\Dokumentation.exe
+C:\Users\stefa\source\repos\Dokumentation\Dokumentation\obj\Release\Dokumentation.pdb
