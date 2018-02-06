@@ -1,0 +1,44 @@
+============================================================================
+
+///TestFile
+///Stefan Simic
+///06.02.2018 18:36:57
+///Version 1.0
+
+============================================================================
+
+Änderungen: Nun sollte alles funktionieren Braaa
+
+============================================================================
+
+
+============================================================================
+
+Änderungen: Was passiert bei einer zweiten Änderung?  bei einem zweiten LOG?
+
+Von       : Stefan Simic
+Version   : 2.0
+Am        : 06.02.2018 18:38:01
+============================================================================
+
+///TestFile
+///Stefan Simic
+///06.02.2018 18:46:09
+///Version 1.0
+
+============================================================================
+
+Änderungen: Nun muss nur noch getan werden, dass die Version abgeändert werden kann, dies erfolgt durch ein raufzählen, jedoch muss ich dies noch perfomant und elegant lösen
+
+============================================================================
+
+///TestFile
+///Stefan Simic
+///06.02.2018 18:49:45
+///Version 1.0
+
+============================================================================
+
+Änderungen: Nochmal ein Test um zu schauen ob das "Worked!" funktioniert wie es soll.
+Eine Frage habe ich, wie handelt dieses Ding lange Worte?
+TestenwirdieseinmalindemwireinunnötiglangeswortschreibenwasLegitkeinWortist, oh kuck mal da, es handelt es richtig gut brate
