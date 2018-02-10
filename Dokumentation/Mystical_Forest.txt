@@ -1,0 +1,10 @@
+============================================================================
+
+///Mystical_Forest
+///Steve Dogg
+///10.02.2018 12:06:20
+///Version 1.0
+
+============================================================================
+
+Änderungen: Ein Ritter verirrt sich in einem Wald, und schwirrt dort herum, bis er ein Geräusch eines Pferdes hört und zu ihm geht, da er denkt dieser könnte ihm helfen. Er wird aber Zeuge wie diese Kreatur seine Rasse abschlachtet und dann kann der Nutzer die nächsten Aktionen entscheiden.
