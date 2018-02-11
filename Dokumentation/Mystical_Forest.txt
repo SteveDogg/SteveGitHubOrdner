@@ -8,3 +8,13 @@
 ============================================================================
 
 Änderungen: Ein Ritter verirrt sich in einem Wald, und schwirrt dort herum, bis er ein Geräusch eines Pferdes hört und zu ihm geht, da er denkt dieser könnte ihm helfen. Er wird aber Zeuge wie diese Kreatur seine Rasse abschlachtet und dann kann der Nutzer die nächsten Aktionen entscheiden.
+============================================================================
+
+///Mystical_Forest
+///Steve Dogg
+///11.02.2018 10:46:17
+///Version 1.0
+
+============================================================================
+
+Änderungen: Die Geschichte brauch noch feinschlif und die Bilder müssen irgendwann doch gemacht werden für die Story, dies wär noch interessant zu tun, jedoch hätte es schlussendlich nicht all zu viel mit programmieren zu tun aber das wäre ja nicht schlimm, deswegen finde ich dieses Projekt sehr gut und werde mit Freude an dem arbeiten :)
