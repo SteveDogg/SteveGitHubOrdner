@@ -1,0 +1,22 @@
+============================================================================
+
+///GitHubTest
+///Steve Dogg
+///06.02.2018 22:11:01
+///Version 1.0
+
+============================================================================
+
+Änderungen: Es wird hier getestet, ob es funktioniert hat, die C#-Datei zu builden und über GitHub auf meinen Laptop zu übertragen.
+
+============================================================================
+
+
+============================================================================
+
+Änderungen: Es hat geklappt, und dies sogar zu meiner überraschung erfolgreich. Juheej!!
+
+
+Von       : Steve Dogg
+Version   : 1.1
+Am        : 06.02.2018 22:11:53
