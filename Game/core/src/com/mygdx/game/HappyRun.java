@@ -16,7 +16,8 @@ public class HappyRun extends ApplicationAdapter {
 	Texture background;
 
 	int intAnimation =0;
-
+	//float floatX = Gdx.graphics.getWidth();
+	float floatX = 2000;
 
 
 	@Override
@@ -27,6 +28,8 @@ public class HappyRun extends ApplicationAdapter {
 		dude[0] = new Texture("dude1_1.png");
 		dude[1] = new Texture("dude2_2.png");
 		platform = new Texture("platform.png");
+
+
 	}
 
 	@Override
@@ -54,7 +57,14 @@ public class HappyRun extends ApplicationAdapter {
 
 		}
 
-		batch.draw(platform, Gdx.graphics.getWidth() / 2 - dude[intAnimation].getWidth() / 2, 200);
+		batch.draw(platform, floatX, 200);
+		floatX -= 10;
+
+		if (floatX <= platform.getWidth() - platform.getWidth() * 2)
+		{
+			floatX = 2000;
+		}
+
 
 		batch.end();
 	}
