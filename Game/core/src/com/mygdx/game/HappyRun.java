@@ -19,6 +19,11 @@ public class HappyRun extends ApplicationAdapter {
 	//float floatX = Gdx.graphics.getWidth();
 	float floatX = 2000;
 
+	float floatY = 100;
+	float Gravitiy = 2;
+	float dudeY = 1;
+	float velocity = 0;
+
 
 	@Override
 	public void create () {
@@ -28,6 +33,7 @@ public class HappyRun extends ApplicationAdapter {
 		dude[0] = new Texture("dude1_1.png");
 		dude[1] = new Texture("dude2_2.png");
 		platform = new Texture("platform.png");
+		dudeY = Gdx.graphics.getHeight() / 2 - dude[intAnimation].getHeight() / 2;
 
 
 	}
@@ -47,15 +53,24 @@ public class HappyRun extends ApplicationAdapter {
 			intAnimation = 0;
 		}
 
-		batch.draw(dude[intAnimation], Gdx.graphics.getWidth() / 2 - dude[intAnimation].getWidth() /2, 2);
+		velocity++;
+		dudeY -= velocity;
+
+		batch.draw(dude[0], Gdx.graphics.getWidth() / 2 - dude[intAnimation].getWidth() /2, dudeY);
 
 
 		if (Gdx.input.isTouched()) {
 
 			batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-			batch.draw(dude[intAnimation], Gdx.graphics.getWidth() / 2 - dude[intAnimation].getWidth() / 2, 200);
+			batch.draw(dude[intAnimation], Gdx.graphics.getWidth() / 2 - dude[intAnimation].getWidth() / 2, dudeY);
+			floatY += 10;
 
-		}
+			}
+
+			if(floatY > 400)
+			{
+				floatY = 100;
+			}
 
 		batch.draw(platform, floatX, 200);
 		floatX -= 10;

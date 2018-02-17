@@ -8,7 +8,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:2.2.0'
         
 
     }
@@ -20,7 +20,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = "HappyRun"
+        appName = "my-gdx-game"
         gdxVersion = '1.9.8'
         roboVMVersion = '2.3.3'
         box2DLightsVersion = '1.4'
