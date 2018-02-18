@@ -24,6 +24,8 @@ public class HappyRun extends ApplicationAdapter {
 	float dudeY = 1;
 	float velocity = 0;
 
+	int spielStand = 0;
+
 
 	@Override
 	public void create () {
@@ -42,45 +44,47 @@ public class HappyRun extends ApplicationAdapter {
 	public void render () {
 
 		batch.begin();
-
-		batch.draw(background, 0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
-		if (intAnimation == 0)
-		{
-			intAnimation = 1;
-		}else
-		{
-			intAnimation = 0;
-		}
-
-		velocity++;
-		dudeY -= velocity;
-
-		batch.draw(dude[0], Gdx.graphics.getWidth() / 2 - dude[intAnimation].getWidth() /2, dudeY);
+		if (spielStand == 0){
+			batch.draw(background, 0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+			spielStand++;
+		} else {
 
 
-		if (Gdx.input.isTouched()) {
 
-			batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-			batch.draw(dude[intAnimation], Gdx.graphics.getWidth() / 2 - dude[intAnimation].getWidth() / 2, dudeY);
-			floatY += 10;
+			if (intAnimation == 0) {
+				intAnimation = 1;
+			} else {
+				intAnimation = 0;
+			}
+
+			velocity++;
+			dudeY -= velocity;
+
+			batch.draw(dude[0], Gdx.graphics.getWidth() / 2 - dude[intAnimation].getWidth() / 2, dudeY);
+
+
+			if (Gdx.input.isTouched()) {
+
+				batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+				batch.draw(dude[intAnimation], Gdx.graphics.getWidth() / 2 - dude[intAnimation].getWidth() / 2, dudeY);
+				floatY += 10;
 
 			}
 
-			if(floatY > 400)
-			{
+			if (floatY > 400) {
 				floatY = 100;
 			}
 
-		batch.draw(platform, floatX, 200);
-		floatX -= 10;
+			batch.draw(platform, floatX, 200);
+			floatX -= 10;
 
-		if (floatX <= platform.getWidth() - platform.getWidth() * 2)
-		{
-			floatX = 2000;
+			if (floatX <= platform.getWidth() - platform.getWidth() * 2) {
+				floatX = 2000;
+			}
+
+
+
 		}
-
-
 		batch.end();
 	}
 
