@@ -24,15 +24,15 @@ namespace Dokumentation
 
         string stringChange;
 
-        public string Pfad = @"C:\Users\stefa\Documents\GitHub\SteveGitHubOrdner\Dokumentation\"; 
+        public string Pfad = @"C:\Users\stefa\Documents\GitHub\SteveGitHubOrdner\Dokumentation\";
 
         string stringNameDatei = "text.txt";
 
-            //Properties.Settings.Default.Name = stringName ;
-            //Properties.Settings.Default.Pfad = stringNameDatei ;
-            //Properties.Settings.Default.Version = intVersion ;
-            //Properties.Settings.Default.Save();
-        
+        //Properties.Settings.Default.Name = stringName ;
+        //Properties.Settings.Default.Pfad = stringNameDatei ;
+        //Properties.Settings.Default.Version = intVersion ;
+        //Properties.Settings.Default.Save();
+
         StreamReader StreamLeser;
 
         private Button cmdStart;
@@ -48,6 +48,7 @@ namespace Dokumentation
         private Label txtErfolg;
         private Label label6;
         private DateTimePicker dateTimePicker1;
+        private TextBox txtboxReader;
         bool boolHeaderZähler = false;
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -78,73 +79,6 @@ namespace Dokumentation
         private void cmdCommit_Click(object sender, EventArgs e)
         {
 
-                stringChange = txtboxChange.Text;
-
-
-            Properties.Settings.Default.Name = txtboxName.Text;
-            Properties.Settings.Default.Pfad = txtboxPfad.Text.Trim();
-            Properties.Settings.Default.Version = txtboxVersion.Text.Trim();
-            Properties.Settings.Default.Save();
-
-            reader = (Pfad + Properties.Settings.Default.Pfad + ".txt");
-
-            if (Properties.Settings.Default.Pfad != "") {
-
-                StreamWriter sw = new StreamWriter((Pfad + Properties.Settings.Default.Pfad + ".txt"), true);
-
-                dateTimePicker1.Value = DateTime.Now;
-                string txtUhrzeit = Convert.ToString(DateTime.Now.ToString());
-
-
-
-                if (boolHeaderZähler == true && stringNameDatei != "")
-                {
-                    sw.WriteLine();
-                    sw.WriteLine("============================================================================");
-                    sw.WriteLine();
-                    sw.WriteLine();
-                    sw.WriteLine("============================================================================");
-                    sw.WriteLine();
-
-                    sw.WriteLine("Änderungen: " + txtboxChange.Text);
-                    sw.WriteLine();
-                    sw.WriteLine("Von       : " + Properties.Settings.Default.Name);
-                    sw.WriteLine("Version   : " + Properties.Settings.Default.Version);
-                    sw.WriteLine("Am        : " + txtUhrzeit);
-                    sw.Close();
-
-                    txtErfolg.Visible = true;
-                }
-                else if (stringNameDatei != "" && boolHeaderZähler == false)
-                {
-
-                    boolHeaderZähler = true;
-
-                    sw.WriteLine("============================================================================");
-                    sw.WriteLine("");
-                    sw.WriteLine(@"///" + Properties.Settings.Default.Pfad);
-                    sw.WriteLine(@"///" + Properties.Settings.Default.Name);
-                    sw.WriteLine(@"///" + txtUhrzeit);
-                    sw.WriteLine(@"///" + "Version 1.0" );              
-                    sw.WriteLine("");
-                    sw.WriteLine("============================================================================");
-                    sw.WriteLine("");
-
-                    sw.WriteLine("Änderungen: " + txtboxChange.Text);
-
-                    sw.Close();
-
-                    txtErfolg.Visible = true;
-                }
-                else
-                {
-                    txtboxPfad.Text = "Wählen Sie einen Namen für das File!";
-                }
-            }
-            else
-            {
-                txtboxPfad.Text = "Wählen Sie einen Namen für das File!";
-            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -154,26 +88,6 @@ namespace Dokumentation
 
         private void cmdStart_Click(object sender, EventArgs e)
         {
-
-
-            //Alles andere Visible machen
-
-            cmdStart.Visible = false;
-
-            label4.Visible = true;
-            cmdCommit.Visible = true;
-            txtboxChange.Visible = true;
-            txtboxName.Visible = true;
-            txtboxPfad.Visible = true;
-            txtboxVersion.Visible = true;
-            txtName.Visible = true;
-            label1.Visible = true;
-            label2.Visible = true;
-
-            txtboxName.Text = Properties.Settings.Default.Name;
-            txtboxPfad.Text = Properties.Settings.Default.Pfad;
-            txtboxVersion.Text = Properties.Settings.Default.Version;
-            Properties.Settings.Default.Save();
 
         }
 
@@ -192,6 +106,7 @@ namespace Dokumentation
             this.txtErfolg = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.txtboxReader = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cmdStart
@@ -317,9 +232,20 @@ namespace Dokumentation
             this.dateTimePicker1.TabIndex = 12;
             this.dateTimePicker1.Visible = false;
             // 
+            // txtboxReader
+            // 
+            this.txtboxReader.Location = new System.Drawing.Point(285, 349);
+            this.txtboxReader.Multiline = true;
+            this.txtboxReader.Name = "txtboxReader";
+            this.txtboxReader.Size = new System.Drawing.Size(277, 138);
+            this.txtboxReader.TabIndex = 13;
+            this.txtboxReader.Visible = false;
+            this.txtboxReader.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(403, 360);
+            this.ClientSize = new System.Drawing.Size(583, 499);
+            this.Controls.Add(this.txtboxReader);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtErfolg);
@@ -400,51 +326,84 @@ namespace Dokumentation
                     sw.Close();
 
                     txtErfolg.Visible = true;
-                }
+
+                    //StreamReader wir hier getestet
+
+                    StreamReader sr = new StreamReader(Pfad + Properties.Settings.Default.Pfad + ".txt");
+                    string[] tmpData;
+                    bool successful = false;
+                    int baba = 0;
+
+                    while (sr.Peek() > -1)
+                    {
+                        tmpData = getLoginDataExtract(sr.ReadLine());
+                        if (baba == 1200)
+                        {
+                            successful = true;
+                            break;
+                        }
+                        else if (stringNameDatei != "" && boolHeaderZähler == false)
+                            baba++;
+                        {
+
+
+                        }
+                    }
                 else if (stringNameDatei != "" && boolHeaderZähler == false)
-                {
+                    {
 
-                    boolHeaderZähler = true;
+                        boolHeaderZähler = true;
 
-                    sw.WriteLine("============================================================================");
-                    sw.WriteLine("");
-                    sw.WriteLine(@"///" + Properties.Settings.Default.Pfad);
-                    sw.WriteLine(@"///" + Properties.Settings.Default.Name);
-                    sw.WriteLine(@"///" + txtUhrzeit);
-                    sw.WriteLine(@"///" + "Version 1.0");
-                    sw.WriteLine("");
-                    sw.WriteLine("============================================================================");
-                    sw.WriteLine("");
+                        sw.WriteLine("============================================================================");
+                        sw.WriteLine("");
+                        sw.WriteLine(@"///" + Properties.Settings.Default.Pfad);
+                        sw.WriteLine(@"///" + Properties.Settings.Default.Name);
+                        sw.WriteLine(@"///" + txtUhrzeit);
+                        sw.WriteLine(@"///" + "Version 1.0");
+                        sw.WriteLine("");
+                        sw.WriteLine("============================================================================");
+                        sw.WriteLine("");
 
-                    sw.WriteLine("Änderungen: " + txtboxChange.Text);
+                        sw.WriteLine("Änderungen: " + txtboxChange.Text);
 
-                    sw.Close();
+                        sw.Close();
 
-                    txtErfolg.Visible = true;
+                        txtErfolg.Visible = true;
+                    }
+                    else
+                    {
+                        txtboxPfad.Text = "Wählen Sie einen Namen für das File!";
+                    }
                 }
                 else
                 {
                     txtboxPfad.Text = "Wählen Sie einen Namen für das File!";
                 }
             }
-            else
+
+            private void textBox1_TextChanged_1(object sender, EventArgs e)
             {
-                txtboxPfad.Text = "Wählen Sie einen Namen für das File!";
+
             }
+
+            //public void Leser()
+            //{
+
+            //    string[] tmpData;
+
+            //    StreamReader sr = new StreamReader(reader);
+
+            //    while (sr.Peek() > -1)
+            //    {
+
+            //    }
+            //}
+
         }
-
-        //public void Leser()
-        //{
-
-        //    string[] tmpData;
-
-        //    StreamReader sr = new StreamReader(reader);
-
-        //    while (sr.Peek() > -1)
-        //    {
-
-        //    }
-        //}
-
+        private string[] getLoginDataExtract(string data)
+        {
+            char[] splitChars = { ',' };
+            return data.Split(splitChars);
+        }
     }
 }
