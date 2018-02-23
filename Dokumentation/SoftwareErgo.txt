@@ -1,0 +1,28 @@
+============================================================================
+
+///SoftwareErgo
+///Stefan Simic
+///23.02.2018 09:17:59
+///Version 1.0
+
+============================================================================
+
+Änderungen: Software-Ergonomie
+-------------------------------
+Informationsdarstellung:
+Verständlichkeit
+Klarheit
+Konsistenz
+Erkennbarkeit
+Unterscheidbarkeit
+Kompaktheit
+Lesbarkeit
+
+Dialogdarstellung:
+Erwartungskomformität
+Selbstbeschreibungsfähigkeit
+Individualisierbarkeit
+Aufgabenangemessenheit
+Erlernbarkeit
+Fehlertoleranz
+Steuerbarkeit
