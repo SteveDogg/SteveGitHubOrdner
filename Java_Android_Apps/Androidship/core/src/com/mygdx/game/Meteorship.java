@@ -15,7 +15,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Meteorship extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture img;
+	Texture water_down;
+	Texture water_up;
 
 	//Dateitypen werden erstellt, aber noch nicht zugewiesen
 
@@ -31,7 +32,8 @@ public class Meteorship extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		water_down = new Texture("water_down.png");
+		water_up = new Texture("water_up.png");
 	}
 
 	@Override
@@ -44,7 +46,8 @@ public class Meteorship extends ApplicationAdapter {
 	}
 
 	public void MotionShip () {
-		batch.draw(img, 0,0);
+		batch.draw(water_down, 0,0, 1960 , 150);
+		batch.draw(water_up, 0, 140, 1960, 100);
 	}
 
 }
