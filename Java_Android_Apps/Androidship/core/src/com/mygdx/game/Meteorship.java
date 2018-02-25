@@ -19,6 +19,8 @@ public class Meteorship extends ApplicationAdapter {
 	Texture water_up;
 	Texture[] Flag;
 	Texture ship;
+	Texture Holder;
+	Texture Meteor;
 
 	//Dateitypen werden erstellt, aber noch nicht zugewiesen
 
@@ -45,11 +47,13 @@ public class Meteorship extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		water_down = new Texture("white.png");
 		water_up = new Texture("water_up.png");
-		Flag = new Texture[2];
-		Flag[0] = new Texture("flag1.png");
-		Flag[1] = new Texture("flag2.png");
-		ship = new Texture("ship.png");
-
+		Flag = new Texture[3];
+		Flag[0] = new Texture("viking_ship_flag.png");
+		Flag[1] = new Texture("viking_ship_flag1.png");
+		Flag[2] = new Texture("viking_ship_flag2.png");
+		Holder =  new Texture("viking_ship_flagholder.png");
+		ship = new Texture("viking_ship_1col_cut.png");
+		Meteor = new Texture("meteor.png");
 	}
 
 	@Override
@@ -63,7 +67,7 @@ public class Meteorship extends ApplicationAdapter {
 		}
 
 		MotionShip();
-
+		batch.draw(Meteor, 800, 800);
 		getTheTouch();
 
 
