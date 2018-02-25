@@ -17,9 +17,10 @@ public class Meteorship extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture water_down;
 	Texture water_up;
+	Texture[] Flag;
+	Texture ship;
 
 	//Dateitypen werden erstellt, aber noch nicht zugewiesen
-
 
 
 	//Dateitypen werden erstellt und gleich zugewiesen
@@ -27,27 +28,91 @@ public class Meteorship extends ApplicationAdapter {
 	int intKoordinateX; //Koordinaten des Fingers X
 	int intKoordinateY; //Koordinaten des Fingers Y
 
+	int intKoordinateYHelper;
+
+	int floatX = 0;
+
+	int GameStart = 0;
+
+	int intBeweg = 0;
+
+	int intMotion = 0;
+
 
 	//OnCreate
 	@Override
-	public void create () {
+	public void create() {
 		batch = new SpriteBatch();
-		water_down = new Texture("water_down.png");
+		water_down = new Texture("white.png");
 		water_up = new Texture("water_up.png");
+		Flag = new Texture[2];
+		Flag[0] = new Texture("flag1.png");
+		Flag[1] = new Texture("flag2.png");
+		ship = new Texture("ship.png");
+
 	}
 
 	@Override
-	public void render () {
+	public void render() {
 
 		batch.begin();
+
+		if (GameStart == 0) {
+			batch.draw(water_down, 0, 0, 1920, 1080);
+			GameStart++;
+		}
+
 		MotionShip();
+
+		getTheTouch();
+
+
+
+
 		batch.end();
 
 	}
 
-	public void MotionShip () {
-		batch.draw(water_down, 0,0, 1960 , 150);
-		batch.draw(water_up, 0, 140, 1960, 100);
+	public void MotionShip() {
+		if (intMotion < 4) {
+			intMotion++;
+			intBeweg = 1;
+		} else if (intMotion > 4 && intMotion < 9) {
+			intMotion++;
+			intBeweg = 0;
+		} else {
+			intMotion = 0;
+		}
+		batch.draw(water_down, 0, 0, 1920, 1080);
+		batch.draw(ship, 600, 100);
+		batch.draw(Flag[intBeweg], 750, 250);
+		batch.draw(water_up, floatX, 0, 1920, 200);
+		batch.draw(water_up, floatX - 1920, 0, 1920, 200);
+
+		if (floatX < 1910) {
+			floatX = floatX + 10;
+
+		} else {
+			floatX = 0;
+		}
 	}
 
+	public void getTheTouch() {
+		if (Gdx.input.justTouched()) {
+			intKoordinateX = Gdx.input.getX();
+
+			if(Gdx.input.getY() > 540){
+				intKoordinateYHelper = Gdx.input.getY() - 540;
+				intKoordinateY = 540 - intKoordinateYHelper;
+			} else {
+				intKoordinateYHelper = 540 - Gdx.input.getY();
+				intKoordinateY = intKoordinateYHelper + 540;
+			}
+
+			System.out.println(intKoordinateY + "= Y und GDX = " + Gdx.input.getY());
+
+
+			batch.draw(Flag[1], intKoordinateX, intKoordinateY);
+		}
+	}
 }
