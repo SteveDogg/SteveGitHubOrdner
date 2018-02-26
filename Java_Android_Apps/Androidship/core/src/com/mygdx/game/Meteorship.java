@@ -40,6 +40,9 @@ public class Meteorship extends ApplicationAdapter {
 
 	int intMotion = 0;
 
+	int intShipMotionX = 350;
+	int intShipMotionY = 155;
+
 
 	//OnCreate
 	@Override
@@ -66,9 +69,12 @@ public class Meteorship extends ApplicationAdapter {
 			GameStart++;
 		}
 
+		MotionShipMovement();
+
 		MotionShip();
-		batch.draw(Meteor, 800, 800);
+		//batch.draw(Meteor, 800, 800);
 		getTheTouch();
+
 
 
 
@@ -78,18 +84,9 @@ public class Meteorship extends ApplicationAdapter {
 	}
 
 	public void MotionShip() {
-		if (intMotion < 4) {
-			intMotion++;
-			intBeweg = 1;
-		} else if (intMotion > 4 && intMotion < 9) {
-			intMotion++;
-			intBeweg = 0;
-		} else {
-			intMotion = 0;
-		}
 		batch.draw(water_down, 0, 0, 1920, 1080);
-		batch.draw(ship, 600, 100);
-		batch.draw(Flag[intBeweg], 750, 250);
+		batch.draw(ship, intShipMotionX, intShipMotionY, 800, 300);
+		//batch.draw(Flag[intBeweg], 750, 300);
 		batch.draw(water_up, floatX, 0, 1920, 200);
 		batch.draw(water_up, floatX - 1920, 0, 1920, 200);
 
@@ -99,6 +96,17 @@ public class Meteorship extends ApplicationAdapter {
 		} else {
 			floatX = 0;
 		}
+	}
+	public void MotionShipMovement(){
+
+		if(intMotion < 150){
+			intShipMotionX = intShipMotionX + 2;
+			intMotion++;
+
+		}else if(intMotion == 150){
+			intShipMotionX
+		}
+
 	}
 
 	public void getTheTouch() {
