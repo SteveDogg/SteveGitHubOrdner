@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.Random;
+
 ///
 ///Stefan Simic
 ///Meteorship
@@ -41,8 +43,13 @@ public class Meteorship extends ApplicationAdapter {
 	int intMotion = 0;
 
 	int intShipMotionX = 350;
-	int intShipMotionY = 155;
+	int intShipMotionY = 145;
 
+	boolean Abfrager = false;
+
+	int intUpCounter = 0;
+
+	int Arrayer = 0;
 
 	//OnCreate
 	@Override
@@ -72,7 +79,7 @@ public class Meteorship extends ApplicationAdapter {
 		MotionShipMovement();
 
 		MotionShip();
-		//batch.draw(Meteor, 800, 800);
+		batch.draw(Meteor, 800, 800, 40, 40);
 		getTheTouch();
 
 
@@ -86,6 +93,8 @@ public class Meteorship extends ApplicationAdapter {
 	public void MotionShip() {
 		batch.draw(water_down, 0, 0, 1920, 1080);
 		batch.draw(ship, intShipMotionX, intShipMotionY, 800, 300);
+		batch.draw(Flag[Arrayer], intShipMotionX + 320, intShipMotionY + 135);
+		batch.draw(Holder, intShipMotionX + 440, intShipMotionY + 112);
 		//batch.draw(Flag[intBeweg], 750, 300);
 		batch.draw(water_up, floatX, 0, 1920, 200);
 		batch.draw(water_up, floatX - 1920, 0, 1920, 200);
@@ -99,12 +108,37 @@ public class Meteorship extends ApplicationAdapter {
 	}
 	public void MotionShipMovement(){
 
+		if(intUpCounter < 20){
+			if(Abfrager == false)
+				{
+					intShipMotionY = intShipMotionY - 5;
+				}
+			Abfrager = true;
+			intUpCounter++;
+		}else if(intUpCounter < 40){
+
+			if(Abfrager == true)
+				{
+					intShipMotionY = intShipMotionY + 5;
+				}
+			Abfrager = false;
+			intUpCounter++;
+		}else {
+			intUpCounter = 0;
+		}
+
+
 		if(intMotion < 150){
 			intShipMotionX = intShipMotionX + 2;
+			Arrayer = 2;
 			intMotion++;
 
-		}else if(intMotion == 150){
-			intShipMotionX
+		}else if(intMotion < 300){
+			intShipMotionX = intShipMotionX - 2;
+			Arrayer = 1;
+			intMotion++;
+		}else {
+			intMotion = 0;
 		}
 
 	}
