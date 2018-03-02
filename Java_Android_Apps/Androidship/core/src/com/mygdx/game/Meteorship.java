@@ -92,6 +92,7 @@ public class Meteorship extends ApplicationAdapter {
 
 	public void MotionShip() {
 		batch.draw(water_down, 0, 0, 1920, 1080);
+		batch.draw(water_up, 0, 20, 1920, 200);
 		batch.draw(ship, intShipMotionX, intShipMotionY, 800, 300);
 		batch.draw(Flag[Arrayer], intShipMotionX + 320, intShipMotionY + 135);
 		batch.draw(Holder, intShipMotionX + 440, intShipMotionY + 112);
@@ -144,7 +145,7 @@ public class Meteorship extends ApplicationAdapter {
 	}
 
 	public void getTheTouch() {
-		if (Gdx.input.justTouched()) {
+		if (Gdx.input.isTouched()) {
 			intKoordinateX = Gdx.input.getX();
 
 			if(Gdx.input.getY() > 540){
@@ -157,8 +158,17 @@ public class Meteorship extends ApplicationAdapter {
 
 			System.out.println(intKoordinateY + "= Y und GDX = " + Gdx.input.getY());
 
+			if(intKoordinateX > 980){
+				intShipMotionX = intShipMotionX + 6;
 
-			batch.draw(Flag[1], intKoordinateX, intKoordinateY);
+			}else{
+
+				intShipMotionX = intShipMotionX - 6;
+			}
+
+			/*
+			intMotion =
+			*/
 		}
 	}
 }
