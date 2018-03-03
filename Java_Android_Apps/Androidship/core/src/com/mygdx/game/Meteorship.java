@@ -22,7 +22,7 @@ public class Meteorship extends ApplicationAdapter {
 	Texture[] Flag;
 	Texture ship;
 	Texture Holder;
-	Texture Meteor;
+	Texture[] Meteor;
 
 	//Dateitypen werden erstellt, aber noch nicht zugewiesen
 
@@ -42,14 +42,20 @@ public class Meteorship extends ApplicationAdapter {
 
 	int intMotion = 0;
 
-	int intShipMotionX = 350;
-	int intShipMotionY = 145;
+	float intShipMotionX = 350;
+	float intShipMotionY = 145;
 
 	boolean Abfrager = false;
 
 	int intUpCounter = 0;
 
 	int Arrayer = 0;
+
+	float y;
+	float yspeed;
+
+	int xFall;
+	int yFall;
 
 	//OnCreate
 	@Override
@@ -63,7 +69,7 @@ public class Meteorship extends ApplicationAdapter {
 		Flag[2] = new Texture("viking_ship_flag2.png");
 		Holder =  new Texture("viking_ship_flagholder.png");
 		ship = new Texture("viking_ship_1col_cut.png");
-		Meteor = new Texture("meteor.png");
+		Meteor = new Texture[50];
 	}
 
 	@Override
@@ -79,18 +85,15 @@ public class Meteorship extends ApplicationAdapter {
 		MotionShipMovement();
 
 		MotionShip();
-		batch.draw(Meteor, 800, 800, 40, 40);
+		MeteorRain();
 		getTheTouch();
-
-
-
-
 
 		batch.end();
 
 	}
 
 	public void MotionShip() {
+
 		batch.draw(water_down, 0, 0, 1920, 1080);
 		batch.draw(water_up, 0, 20, 1920, 200);
 		batch.draw(ship, intShipMotionX, intShipMotionY, 800, 300);
@@ -109,6 +112,8 @@ public class Meteorship extends ApplicationAdapter {
 	}
 	public void MotionShipMovement(){
 
+		//The Ship moves naturally up and down, in a 20 frames interval, each time by 5 pixels
+
 		if(intUpCounter < 20){
 			if(Abfrager == false)
 				{
@@ -117,7 +122,6 @@ public class Meteorship extends ApplicationAdapter {
 			Abfrager = true;
 			intUpCounter++;
 		}else if(intUpCounter < 40){
-
 			if(Abfrager == true)
 				{
 					intShipMotionY = intShipMotionY + 5;
@@ -128,16 +132,19 @@ public class Meteorship extends ApplicationAdapter {
 			intUpCounter = 0;
 		}
 
+		//The Ship moves naturally from left to right and from right to left. each time they cross a distance of 300 pixels from one side to another.
 
 		if(intMotion < 150){
 			intShipMotionX = intShipMotionX + 2;
 			Arrayer = 2;
 			intMotion++;
-
-		}else if(intMotion < 300){
+			if(intMotion == 150){
+				intMotion = 300;
+			}
+		}else if(intMotion > 150){
 			intShipMotionX = intShipMotionX - 2;
 			Arrayer = 1;
-			intMotion++;
+			intMotion--;
 		}else {
 			intMotion = 0;
 		}
@@ -170,5 +177,33 @@ public class Meteorship extends ApplicationAdapter {
 			intMotion =
 			*/
 		}
+
+	}
+	public void MeteorRain(){
+		for (int i = 0; i < Meteor.length; i++) {
+			Meteor[i] = new Texture("meteor.png");
+		}
+		for (int n = 0; n < Meteor.length; n++) {
+
+			randomNumberGetting();
+			batch.draw(Meteor[n], xFall, yFall, 40, 40);
+		}
+	}
+	/*
+	void fall(){
+		y = y + yspeed;
+		float gravity = 3;
+		yspeed = yspeed + gravity;
+
+		if(y > Gdx.graphics.getHeight()){
+			y = 150;
+		}
+	}
+	*/
+	void randomNumberGetting(){
+		Random x = new Random();
+		xFall = x.nextInt(400);
+		Random yx = new Random();
+		yFall = yx.nextInt(400);
 	}
 }
