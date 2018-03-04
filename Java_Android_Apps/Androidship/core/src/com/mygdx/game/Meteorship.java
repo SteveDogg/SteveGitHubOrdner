@@ -99,6 +99,8 @@ public class Meteorship extends ApplicationAdapter {
 
 	}
 
+	//Draws The Ship and makes the water flow
+
 	public void MotionShip() {
 
 		batch.draw(water_up, 0, 20, 1920, 200);
@@ -109,6 +111,8 @@ public class Meteorship extends ApplicationAdapter {
 		batch.draw(water_up, floatX, 0, 1920, 200);
 		batch.draw(water_up, floatX - 1920, 0, 1920, 200);
 
+		//Makes the water flow
+
 		if (floatX < 1910) {
 			floatX = floatX + 10;
 
@@ -116,9 +120,10 @@ public class Meteorship extends ApplicationAdapter {
 			floatX = 0;
 		}
 	}
-	public void MotionShipMovement(){
 
-		//The Ship moves naturally up and down, in a 20 frames interval, each time by 5 pixels
+	//The Ship moves naturally up and down, in a 20 frames interval, each time by 5 pixels
+
+	public void MotionShipMovement(){
 
 		if(intUpCounter < 20){
 			if(Abfrager == false)
@@ -154,8 +159,9 @@ public class Meteorship extends ApplicationAdapter {
 		}else {
 			intMotion = 0;
 		}
-
 	}
+
+	//Gets the touch coordinates and makes something with them.
 
 	public void getTheTouch() {
 		if (Gdx.input.isTouched()) {
@@ -186,13 +192,15 @@ public class Meteorship extends ApplicationAdapter {
 		}
 
 	}
+
+	//Creates The Meteor and makes it fly down
+
 	public void MeteorRain(){
 		if(Meteorfrage == true) {
 			for (int i = 0; i < Meteor.length; i++) {
 				Meteor[i] = new Texture("meteor.png");
 			}
 			for (int n = 0; n < Meteor.length; n++) {
-
 				randomNumberGetting();
 				batch.draw(Meteor[n], xFall, yFall, 40, 40);
 				floatXMeteor[n] = xFall;
@@ -213,17 +221,9 @@ public class Meteorship extends ApplicationAdapter {
 			}
 		}
 	}
-	/*
-	void fall(){
-		y = y + yspeed;
-		float gravity = 3;
-		yspeed = yspeed + gravity;
 
-		if(y > Gdx.graphics.getHeight()){
-			y = 150;
-		}
-	}
-	*/
+	//Gets two Random Numbers for the X- and Y-coordinates.
+
 	void randomNumberGetting(){
 		Random x = new Random();
 		xFall = x.nextInt(Gdx.graphics.getWidth()+ 1000);
