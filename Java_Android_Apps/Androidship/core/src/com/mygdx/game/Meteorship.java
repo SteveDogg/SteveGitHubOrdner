@@ -51,11 +51,18 @@ public class Meteorship extends ApplicationAdapter {
 
 	int Arrayer = 0;
 
+	//MeteorVariablen
+
 	float y;
 	float yspeed;
 
 	int xFall;
 	int yFall;
+
+	int[] floatXMeteor = new int[50];
+	int[] floatYMeteor = new int[50];
+
+	boolean Meteorfrage = true;
 
 	//OnCreate
 	@Override
@@ -77,16 +84,16 @@ public class Meteorship extends ApplicationAdapter {
 
 		batch.begin();
 
+		batch.draw(water_down, 0, 0, 1920, 1080);
 		if (GameStart == 0) {
 			batch.draw(water_down, 0, 0, 1920, 1080);
 			GameStart++;
 		}
 
-		MotionShipMovement();
-
-		MotionShip();
-		MeteorRain();
 		getTheTouch();
+		MotionShipMovement();
+		MeteorRain();
+		MotionShip();
 
 		batch.end();
 
@@ -94,7 +101,6 @@ public class Meteorship extends ApplicationAdapter {
 
 	public void MotionShip() {
 
-		batch.draw(water_down, 0, 0, 1920, 1080);
 		batch.draw(water_up, 0, 20, 1920, 200);
 		batch.draw(ship, intShipMotionX, intShipMotionY, 800, 300);
 		batch.draw(Flag[Arrayer], intShipMotionX + 320, intShipMotionY + 135);
@@ -166,11 +172,12 @@ public class Meteorship extends ApplicationAdapter {
 			System.out.println(intKoordinateY + "= Y und GDX = " + Gdx.input.getY());
 
 			if(intKoordinateX > 980){
-				intShipMotionX = intShipMotionX + 6;
+				intShipMotionX = intShipMotionX - 4;
+				intMotion = intMotion - 2;
 
 			}else{
-
-				intShipMotionX = intShipMotionX - 6;
+				intShipMotionX = intShipMotionX + 4;
+				intMotion = intMotion + 2;
 			}
 
 			/*
@@ -180,13 +187,30 @@ public class Meteorship extends ApplicationAdapter {
 
 	}
 	public void MeteorRain(){
-		for (int i = 0; i < Meteor.length; i++) {
-			Meteor[i] = new Texture("meteor.png");
-		}
-		for (int n = 0; n < Meteor.length; n++) {
+		if(Meteorfrage == true) {
+			for (int i = 0; i < Meteor.length; i++) {
+				Meteor[i] = new Texture("meteor.png");
+			}
+			for (int n = 0; n < Meteor.length; n++) {
 
-			randomNumberGetting();
-			batch.draw(Meteor[n], xFall, yFall, 40, 40);
+				randomNumberGetting();
+				batch.draw(Meteor[n], xFall, yFall, 40, 40);
+				floatXMeteor[n] = xFall;
+				floatYMeteor[n] = yFall;
+				Meteorfrage = false;
+			}
+		}else{
+			for (int m = 0; m < Meteor.length; m++) {
+				floatXMeteor[m] = floatXMeteor[m] - 2;
+				floatYMeteor[m] = floatYMeteor[m] - 2;
+				batch.draw(Meteor[m],floatXMeteor[m], floatYMeteor[m],40,40);
+				if(floatYMeteor[m] < -200){
+					randomNumberGetting();
+					floatXMeteor[m] = xFall;
+					floatYMeteor[m] = yFall;
+
+				}
+			}
 		}
 	}
 	/*
@@ -202,8 +226,8 @@ public class Meteorship extends ApplicationAdapter {
 	*/
 	void randomNumberGetting(){
 		Random x = new Random();
-		xFall = x.nextInt(400);
+		xFall = x.nextInt(Gdx.graphics.getWidth()+ 1000);
 		Random yx = new Random();
-		yFall = yx.nextInt(400);
+		yFall = (yx.nextInt(Gdx.graphics.getHeight()* 2) + Gdx.graphics.getHeight());
 	}
 }
