@@ -51,6 +51,8 @@ public class Meteorship extends ApplicationAdapter {
 
 	int Arrayer = 0;
 
+	int ScreenHeight = Gdx.graphics.getHeight()/2;
+
 	//MeteorVariablen
 
 	float y;
@@ -167,16 +169,13 @@ public class Meteorship extends ApplicationAdapter {
 		if (Gdx.input.isTouched()) {
 			intKoordinateX = Gdx.input.getX();
 
-			if(Gdx.input.getY() > 540){
-				intKoordinateYHelper = Gdx.input.getY() - 540;
-				intKoordinateY = 540 - intKoordinateYHelper;
+			if(Gdx.input.getY() > ScreenHeight){
+				intKoordinateYHelper = Gdx.input.getY() - ScreenHeight;
+				intKoordinateY = ScreenHeight - intKoordinateYHelper;
 			} else {
-				intKoordinateYHelper = 540 - Gdx.input.getY();
-				intKoordinateY = intKoordinateYHelper + 540;
+				intKoordinateYHelper = ScreenHeight - Gdx.input.getY();
+				intKoordinateY = intKoordinateYHelper + ScreenHeight;
 			}
-
-			System.out.println(intKoordinateY + "= Y und GDX = " + Gdx.input.getY());
-
 			if(intKoordinateX > 980){
 				intShipMotionX = intShipMotionX - 4;
 				intMotion = intMotion - 2;
