@@ -51,8 +51,6 @@ public class Meteorship extends ApplicationAdapter {
 
 	int Arrayer = 0;
 
-	int ScreenHeight = Gdx.graphics.getHeight()/2;
-
 	//MeteorVariablen
 
 	float y;
@@ -92,10 +90,13 @@ public class Meteorship extends ApplicationAdapter {
 			GameStart++;
 		}
 
-		getTheTouch();
 		MotionShipMovement();
+
 		MeteorRain();
+
 		MotionShip();
+
+		getTheTouch();
 
 		batch.end();
 
@@ -168,26 +169,21 @@ public class Meteorship extends ApplicationAdapter {
 	public void getTheTouch() {
 		if (Gdx.input.isTouched()) {
 			intKoordinateX = Gdx.input.getX();
-
-			if(Gdx.input.getY() > ScreenHeight){
-				intKoordinateYHelper = Gdx.input.getY() - ScreenHeight;
-				intKoordinateY = ScreenHeight - intKoordinateYHelper;
+			if(Gdx.input.getY() > Gdx.graphics.getHeight()/2){
+				intKoordinateYHelper = Gdx.input.getY() - Gdx.graphics.getHeight()/2;
+				intKoordinateY = Gdx.graphics.getHeight()/2 - intKoordinateYHelper;
 			} else {
-				intKoordinateYHelper = ScreenHeight - Gdx.input.getY();
-				intKoordinateY = intKoordinateYHelper + ScreenHeight;
+				intKoordinateYHelper = Gdx.graphics.getHeight()/2 - Gdx.input.getY();
+				intKoordinateY = intKoordinateYHelper + Gdx.graphics.getHeight()/2;
 			}
 			if(intKoordinateX > 980){
 				intShipMotionX = intShipMotionX - 4;
 				intMotion = intMotion - 2;
-
 			}else{
 				intShipMotionX = intShipMotionX + 4;
 				intMotion = intMotion + 2;
 			}
-
-			/*
-			intMotion =
-			*/
+			MeteorTouchCheck();
 		}
 
 	}
@@ -228,5 +224,14 @@ public class Meteorship extends ApplicationAdapter {
 		xFall = x.nextInt(Gdx.graphics.getWidth()+ 1000);
 		Random yx = new Random();
 		yFall = (yx.nextInt(Gdx.graphics.getHeight()* 2) + Gdx.graphics.getHeight());
+	}
+
+	public void MeteorTouchCheck(){
+		for (int h = 0; h < Meteor.length; h++){
+			if(intKoordinateY > floatYMeteor[h] && intKoordinateY < floatYMeteor[h] + 40 && intKoordinateX > floatXMeteor[h] && intKoordinateX < floatXMeteor[h] + 40){
+				floatXMeteor[h] = 0;
+				floatYMeteor[h] = 0;
+			}
+		}
 	}
 }
