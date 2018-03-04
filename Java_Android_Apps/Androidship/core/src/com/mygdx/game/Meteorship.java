@@ -167,7 +167,7 @@ public class Meteorship extends ApplicationAdapter {
 	//Gets the touch coordinates and makes something with them.
 
 	public void getTheTouch() {
-		if (Gdx.input.isTouched()) {
+		if (Gdx.input.justTouched()) {
 			intKoordinateX = Gdx.input.getX();
 			if(Gdx.input.getY() > Gdx.graphics.getHeight()/2){
 				intKoordinateYHelper = Gdx.input.getY() - Gdx.graphics.getHeight()/2;
@@ -225,6 +225,9 @@ public class Meteorship extends ApplicationAdapter {
 		Random yx = new Random();
 		yFall = (yx.nextInt(Gdx.graphics.getHeight()* 2) + Gdx.graphics.getHeight());
 	}
+
+	//A check if the coordinates of the Touch are on the coordinates of a meteor.
+	//If yes, they disappear, this will be used later for projectiles
 
 	public void MeteorTouchCheck(){
 		for (int h = 0; h < Meteor.length; h++){
