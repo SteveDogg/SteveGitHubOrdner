@@ -4,8 +4,12 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
+import java.awt.Rectangle;
 import java.util.Random;
 
 ///
@@ -23,6 +27,9 @@ public class Meteorship extends ApplicationAdapter {
 	Texture ship;
 	Texture Holder;
 	Texture[] Meteor;
+	Texture Canon;
+	Texture CanonHolder;
+	TextureRegion rotater;
 
 	//Dateitypen werden erstellt, aber noch nicht zugewiesen
 
@@ -75,8 +82,11 @@ public class Meteorship extends ApplicationAdapter {
 		Flag[1] = new Texture("viking_ship_flag1.png");
 		Flag[2] = new Texture("viking_ship_flag2.png");
 		Holder =  new Texture("viking_ship_flagholder.png");
+		Canon = new Texture("canon_canon.png");
+		CanonHolder = new Texture("canon_holder.png");
 		ship = new Texture("viking_ship_1col_cut.png");
 		Meteor = new Texture[50];
+		rotater = new TextureRegion(Canon);
 	}
 
 	@Override
@@ -84,11 +94,7 @@ public class Meteorship extends ApplicationAdapter {
 
 		batch.begin();
 
-		batch.draw(water_down, 0, 0, 1920, 1080);
-		if (GameStart == 0) {
-			batch.draw(water_down, 0, 0, 1920, 1080);
-			GameStart++;
-		}
+		batch.draw(water_down, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 		MotionShipMovement();
 
@@ -107,6 +113,9 @@ public class Meteorship extends ApplicationAdapter {
 	public void MotionShip() {
 
 		batch.draw(water_up, 0, 20, 1920, 200);
+		//batch.draw(Canon, intShipMotionX + 535, intShipMotionY + 130,50,120 );
+		batch.draw(rotater, intShipMotionX + 535, intShipMotionY + 130,50,120, 50, 120, 1, 1, intShipMotionX);
+		batch.draw(CanonHolder, intShipMotionX + 500, intShipMotionY + 120, 120, 60);
 		batch.draw(ship, intShipMotionX, intShipMotionY, 800, 300);
 		batch.draw(Flag[Arrayer], intShipMotionX + 320, intShipMotionY + 135);
 		batch.draw(Holder, intShipMotionX + 440, intShipMotionY + 112);
@@ -167,7 +176,7 @@ public class Meteorship extends ApplicationAdapter {
 	//Gets the touch coordinates and makes something with them.
 
 	public void getTheTouch() {
-		if (Gdx.input.justTouched()) {
+		if (Gdx.input.isTouched()) {
 			intKoordinateX = Gdx.input.getX();
 			if(Gdx.input.getY() > Gdx.graphics.getHeight()/2){
 				intKoordinateYHelper = Gdx.input.getY() - Gdx.graphics.getHeight()/2;
@@ -176,6 +185,7 @@ public class Meteorship extends ApplicationAdapter {
 				intKoordinateYHelper = Gdx.graphics.getHeight()/2 - Gdx.input.getY();
 				intKoordinateY = intKoordinateYHelper + Gdx.graphics.getHeight()/2;
 			}
+			/*
 			if(intKoordinateX > 980){
 				intShipMotionX = intShipMotionX - 4;
 				intMotion = intMotion - 2;
@@ -183,6 +193,7 @@ public class Meteorship extends ApplicationAdapter {
 				intShipMotionX = intShipMotionX + 4;
 				intMotion = intMotion + 2;
 			}
+			*/
 			MeteorTouchCheck();
 		}
 
